@@ -204,6 +204,10 @@ const loadCategory = () => {
         .catch(error => console.log(error));
 };
 
+
+const defaultNews = `https://openapi.programming-hero.com/api/news/category/01`;
+loadNewsDetails(defaultNews);
+
 loadCategory();
 
 
