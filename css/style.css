@@ -94,3 +94,13 @@ a {
 .bg-green {
     background-color: var(--green);
 }
+
+.modalImg {
+    width: 100%;
+    min-height: 200px;
+    background-image: url("../img/loader.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: black;
+}
