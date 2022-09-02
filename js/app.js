@@ -3,10 +3,83 @@ const putLength = (len) => {
     const numOfNews = document.getElementById("numOfNews");
     numOfNews.innerText = len;
 }
+
+const displayDetails = (data) => {
+    console.log(data)
+}
 const displayNews = news => {
     console.log(news.data);
     const len = news.data.length;
     putLength(len);
+    const newsContainer = document.getElementById("news-container");
+    newsContainer.innerHTML = "";
+
+    for (const newsData of news.data) {
+
+        const newsCard = document.createElement("div");
+        newsCard.classList.add("news-card");
+        newsCard.innerHTML = `
+        <div class="card border-0 mt-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2 m-auto">
+                                    <img src="${newsData.thumbnail_url}" class="img-fluid card-img-top" alt="">
+                                </div>
+                                <div class="col-md-10 m-auto">
+                                    <h5 class="news-title fw-semibold">
+                                        ${newsData.title}
+                                    </h5>
+                                    <hr>
+                                    <p class="news-short">
+                                        ${newsData.details.slice(0, 200)}[...]
+                                    </p>
+    
+                                    <div class="row">
+                                        <div class="col-md-3 col-6 p-2">
+                                            <div class="d-flex">
+                                                <div class="img">
+                                                    <img src="${newsData.author.img}" class="img-fluid author" alt="">
+                                                </div>
+                                                <div class="author-details ms-2">
+                                                    <p class="fs-14 author-name fw-semibold mb-0">
+                                                        ${newsData.author.name ? newsData.author.name : "not found"}
+                                                    </p>
+                                                    <p class="fs-14 mb-0">
+                                                        ${newsData.author.published_date ? newsData.author.published_date : "not found"}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6 p-2 m-auto">
+                                            <p class="mb-0">
+                                                <i class="far fa-eye"></i> <span id="views">${newsData.total_view ? newsData.total_view : "not found"}</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3 col-6 p-2 m-auto">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <i class="far fa-star fs-14 text-muted mx-1"></i>
+                                                <i class="far fa-star fs-14 text-muted mx-1"></i>
+                                                <i class="far fa-star fs-14 text-muted mx-1"></i>
+                                                <i class="far fa-star fs-14 text-muted mx-1"></i>
+                                                <i class="far fa-star fs-14 text-muted mx-1"></i>
+                                                <span class="d-inline-block mx-1" id="star-rating">${newsData.rating.number}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6 p-2 m-auto text-end">
+                                            <button class="btn btn-green fs-14" onclick="loadModal('${newsData._id}')" data-bs-toggle="modal" data-bs-target="#newsModal">
+                                                Show Details <i class="fa fa-arrow-right ms-1"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+        `;
+
+        newsContainer.appendChild(newsCard);
+    }
 }
 
 const loadNewsDetails = (url) => {
@@ -41,6 +114,15 @@ const categoryListener = (id) => {
     }
     const newsUrl = `https://openapi.programming-hero.com/api/news/category/${id}`;
     loadNewsDetails(newsUrl);
+}
+
+
+const loadModal = (id) => {
+    const newsUrl = `https://openapi.programming-hero.com/api/news/${id}`;
+    fetch(newsUrl)
+        .then(res => res.json())
+        .then(data => displayDetails(data))
+        .catch(error => console.log(error));
 }
 
 

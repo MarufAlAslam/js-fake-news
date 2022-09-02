@@ -90,3 +90,7 @@ a {
     background-color: var(--green);
     color: var(--white);
 }
+
+.bg-green {
+    background-color: var(--green);
+}
