@@ -57,6 +57,14 @@ const displayDetails = (data) => {
 `;
     modalBody.appendChild(modalContents);
 }
+
+
+const sort = (data) => {
+    // sort news by views descending
+    data.sort((a, b) => b.total_view - a.total_view);
+}
+
+
 const displayNews = news => {
     console.log(news.data);
     const len = news.data.length;
@@ -64,7 +72,11 @@ const displayNews = news => {
     const newsContainer = document.getElementById("news-container");
     newsContainer.innerHTML = "";
 
+    sort(news.data)
+
     for (const newsData of news.data) {
+
+
 
         const newsCard = document.createElement("div");
         newsCard.classList.add("news-card");
