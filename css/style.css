@@ -1,7 +1,30 @@
+:root {
+    --green: green;
+    --red: red;
+}
+
 * {
     font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
 }
 
 .logo {
     font-family: 'Abril Fatface', cursive;
+    font-size: 35px;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .show>.nav-link,
+.text-green {
+    color: var(--green);
+}
+
+.text-red {
+    color: var(--red);
+}
+
+.profile-img {
+    width: 50px;
+    vertical-align: middle;
+    border-radius: 50%;
 }
