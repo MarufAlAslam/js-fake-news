@@ -77,6 +77,7 @@ a {
 
 .author {
     width: 40px;
+    border-radius: 50%;
 }
 
 .fs-14 {
@@ -154,7 +155,7 @@ button:focus {
     .news-card .col-md-3.col-6.p-2 {
         flex: 0 0 50%;
         max-width: 50%;
-        text-align: ;
+        /* text-align: ; */
         display: flex;
         justify-content: flex-start;
         align-items: center;

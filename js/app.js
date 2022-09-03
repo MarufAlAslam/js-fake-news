@@ -1,9 +1,12 @@
 
+// find the length of the news
 const putLength = (len) => {
     const numOfNews = document.getElementById("numOfNews");
     numOfNews.innerText = len;
 }
 
+
+// display news details in modal
 const displayDetails = (data) => {
     console.log(data.data)
     const myData = data.data[0]
@@ -13,7 +16,7 @@ const displayDetails = (data) => {
     const modalContents = document.createElement('div');
     modalContents.classList.add("modal-contents");
     modalContents.innerHTML = `
-    <div class="modal-header p-0 pb-3">
+                <div class="modal-header p-0 pb-3">
                     <div class="about">
                     <h5 class="modal-title" id="modal-title">
                     ${myData.title}
@@ -58,12 +61,16 @@ const displayDetails = (data) => {
     modalBody.appendChild(modalContents);
 }
 
+
+// sort news bu views by default
 const sort = (data) => {
     // sort news by views descending
     data.sort((a, b) => b.total_view - a.total_view);
 }
 
 
+
+// display news
 const displayNews = news => {
     console.log(news.data);
     const len = news.data.length;
@@ -142,6 +149,8 @@ const displayNews = news => {
     }
 }
 
+
+// load news details and spinner
 const loadNewsDetails = (url) => {
     fetch(url)
         .then(res => res.json())
@@ -155,6 +164,7 @@ const loadNewsDetails = (url) => {
 }
 
 
+// click handler on category
 const categoryListener = (id) => {
     const categoryBtn = document.getElementsByClassName("category");
     const clickedBtn = document.getElementsByClassName("btn" + id);
@@ -177,6 +187,7 @@ const categoryListener = (id) => {
 }
 
 
+// load data in modal from api call
 const loadModal = (id) => {
     const newsUrl = `https://openapi.programming-hero.com/api/news/${id}`;
     fetch(newsUrl)
@@ -184,6 +195,8 @@ const loadModal = (id) => {
         .then(data => displayDetails(data))
         .catch(error => console.log(error));
 }
+
+// remove filter (trending and today's pick)
 const removeFilter = () => {
     const newsCard = document.querySelectorAll(".news-card .card");
     // console.log(newsCard.length)
@@ -191,6 +204,8 @@ const removeFilter = () => {
         card.style.display = "block";
     }
 }
+
+// show trending news
 const loadTrending = () => {
     const notTrending = document.getElementsByClassName("not-trending");
     // console.log(notTrending.length)
@@ -198,6 +213,8 @@ const loadTrending = () => {
         news.style.display = "none";
     }
 }
+
+// show today's pick
 const loadTodaysPick = () => {
     const notPick = document.getElementsByClassName("not-pick");
     // console.log(notPick.length)
@@ -207,7 +224,7 @@ const loadTodaysPick = () => {
 }
 
 
-
+// display categories in top menu
 const displayCategory = categories => {
     const categoryArray = categories.data.news_category;
     const categoryContainer = document.getElementById("categories-holder");
@@ -226,7 +243,7 @@ const displayCategory = categories => {
     categoryBtn[0].classList.add("active");
 }
 
-
+// load categories from api call
 const loadCategory = () => {
     const categoryUrl = "https://openapi.programming-hero.com/api/news/categories";
     fetch(categoryUrl)
@@ -236,12 +253,10 @@ const loadCategory = () => {
 };
 
 
+// show default news on page load
 const defaultNews = `https://openapi.programming-hero.com/api/news/category/01`;
 loadNewsDetails(defaultNews);
 
+
+// call load category to show the categories on page load
 loadCategory();
-
-
-
-
-
