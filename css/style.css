@@ -127,11 +127,41 @@ button:focus {
 }
 
 
+
 @media screen and (max-width: 992px) {
     .navbar-nav.ms-auto.mb-2.mb-lg-0.align-items-center {
         flex-direction: revert;
         justify-content: flex-end;
         align-items: center;
+    }
+
+    #categories-holder {
+        flex-wrap: wrap;
+    }
+
+    #categories-holder div {
+        margin: 4px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .news-card .col-md-2 {
+        flex: 0 0 50%;
+        max-width: 100%;
+        padding-bottom: 15px;
+    }
+
+    .news-card .col-md-3.col-6.p-2 {
+        flex: 0 0 50%;
+        max-width: 50%;
+        text-align: ;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .news-card .col-md-3.col-6.p-2:nth-child(2n) {
+        justify-content: flex-end;
     }
 }
 
@@ -185,5 +215,38 @@ button:focus {
         color: white;
         padding: 2px 9px;
         font-size: 10px;
+    }
+
+    .sorter .d-flex {
+        flex-direction: column;
+    }
+
+    .sorter .btn.btn-green.mx-2 {
+        margin: 5px;
+        width: 100%;
+    }
+
+    .news-card .col-md-2 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-bottom: 15px;
+    }
+
+    .news-card .col-md-3.col-6.p-2:first-child {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .news-card .col-md-3.col-6.p-2:nth-child(2n) {
+        justify-content: flex-start;
+    }
+
+    .news-card .col-md-3.col-6.p-2:last-child {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .news-card .col-md-3.col-6.p-2:last-child button {
+        width: 100%;
     }
 }
