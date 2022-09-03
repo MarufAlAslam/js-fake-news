@@ -200,9 +200,12 @@ const loadModal = (id) => {
 const removeFilter = () => {
     const newsCard = document.querySelectorAll(".news-card .card");
     // console.log(newsCard.length)
-    for (const card of newsCard) {
+    // for (const card of newsCard) {
+    //     card.style.display = "block";
+    // }
+    newsCard.forEach(card => {
         card.style.display = "block";
-    }
+    })
 }
 
 // show trending news
