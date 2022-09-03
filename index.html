@@ -80,7 +80,7 @@
             <!-- categories -->
 
             <!-- news count -->
-            <section class="news-count bg-white my-5">
+            <section class="news-count bg-white mt-5 mb-3">
                 <div class="card border-0 rounded">
                     <div class="card-body">
                         <p class="counter mb-0">
@@ -91,6 +91,40 @@
                 </div>
             </section>
             <!-- news count -->
+
+
+            <!-- sort -->
+            <section class="sorter py-2">
+                <div class="row">
+                    <div class="col-md-3 p-4">
+                        <div class="input-group align-items-center">
+                            <label for="sort" class="mb-1">Sort by Views</label>
+                            <select name="" class="form-select ms-2 rounded" id="">
+                                <option value="">Default</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-9 p-4 text-end mt-auto">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <button class="btn btn-green mx-2" onclick="loadTodaysPick()">
+                                Today's Pick
+                            </button>
+                            <button class="btn btn-green mx-2" onclick="loadTrending()">
+                                Trending
+                            </button>
+                            <button class="btn btn-green mx-2" onclick="removeFilter()">
+                                Remove Filter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- sort -->
+
+
+
 
 
             <!-- main news -->

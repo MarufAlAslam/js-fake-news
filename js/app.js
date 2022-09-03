@@ -58,7 +58,6 @@ const displayDetails = (data) => {
     modalBody.appendChild(modalContents);
 }
 
-
 const sort = (data) => {
     // sort news by views descending
     data.sort((a, b) => b.total_view - a.total_view);
@@ -72,16 +71,13 @@ const displayNews = news => {
     const newsContainer = document.getElementById("news-container");
     newsContainer.innerHTML = "";
 
-    sort(news.data)
+    sort(news.data);
 
     for (const newsData of news.data) {
-
-
-
         const newsCard = document.createElement("div");
         newsCard.classList.add("news-card");
         newsCard.innerHTML = `
-    <div class="card border-0 mt-4">
+    <div class="card border-0 mt-4 ${newsData.others_info.is_trending ? "trending" : "not-trending"}  ${newsData.others_info.is_todays_pick ? "pick" : "not-pick"}">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-2 m-auto">
@@ -91,6 +87,8 @@ const displayNews = news => {
                     <h5 class="news-title fw-semibold">
                         ${newsData.title}
                     </h5>
+                    <p class="text-green fs-14 isTrending">${newsData.others_info.is_trending ? "Trending" : ""}</p>
+                    <p class="text-green fs-14 isTrending">${newsData.others_info.is_todays_pick ? "Today's Pick" : ""}</p>
                     <hr>
                         <p class="news-short">
                             ${newsData.details.slice(0, 200)}[...]
@@ -133,10 +131,10 @@ const displayNews = news => {
                                 </button>
                             </div>
                         </div>
-                </div>
-            </div>
+                </div >
+            </div >
 
-        </div>
+        </div >
                     </div >
     `;
 
@@ -185,6 +183,27 @@ const loadModal = (id) => {
         .then(res => res.json())
         .then(data => displayDetails(data))
         .catch(error => console.log(error));
+}
+const removeFilter = () => {
+    const newsCard = document.querySelectorAll(".news-card .card");
+    // console.log(newsCard.length)
+    for (const card of newsCard) {
+        card.style.display = "block";
+    }
+}
+const loadTrending = () => {
+    const notTrending = document.getElementsByClassName("not-trending");
+    // console.log(notTrending.length)
+    for (const news of notTrending) {
+        news.style.display = "none";
+    }
+}
+const loadTodaysPick = () => {
+    const notPick = document.getElementsByClassName("not-pick");
+    // console.log(notPick.length)
+    for (const news of notPick) {
+        news.style.display = "none";
+    }
 }
 
 
